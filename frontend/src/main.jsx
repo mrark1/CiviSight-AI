@@ -3,8 +3,8 @@ import {createRoot} from "react-dom/client";
 import {Activity, AlertTriangle, BarChart3, Camera, CheckCircle2, ClipboardList, FileText, Home, LogIn, MapPin, Menu, Shield, Sparkles, Upload, Users, X} from "lucide-react";
 import "./styles.css";
 
-const API = "http://127.0.0.1:8000/api";
-const UP = "http://127.0.0.1:8000";
+const API = `${import.meta.env.VITE_API_URL || "http://127.0.0.1:8000"}/api`;
+const UP = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
 function Card({children,className=""}){return <div className={"card "+className}>{children}</div>}
 function Badge({children}){return <span className={"badge "+String(children).toLowerCase()}>{children}</span>}
