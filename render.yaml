@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: civisight-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: civisight-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.9
+
+databases:
+  - name: civisight-db
+    databaseName: civisight
+    user: civisight
+    plan: free
